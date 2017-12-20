@@ -17,6 +17,11 @@ package com.sygan.learning.leetcode.questions.q1;
     Because nums[0] + nums[1] = 2 + 7 = 9,
     return [0, 1].
 */
+
+/**
+ * 入门题目比较简单
+ * 时间复杂度为O(n^2/2)
+ */
 public class TwoSum {
 
     public static void main(String...args){

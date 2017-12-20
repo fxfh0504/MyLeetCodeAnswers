@@ -22,6 +22,11 @@ package com.sygan.learning.leetcode.questions.q2;
  * }
  */
 
+/**
+ * 参考学习了官方答案
+ * 向后进位 使用carry来存储进位参与运算
+ * 要考虑两个数组长度不一的情况
+ */
 public class AddTwoNumbers {
 
     public class ListNode {

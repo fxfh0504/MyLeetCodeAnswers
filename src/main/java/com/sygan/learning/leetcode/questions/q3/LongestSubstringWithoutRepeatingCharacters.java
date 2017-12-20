@@ -23,10 +23,14 @@ import java.util.Set;
 
 
  */
+
+/**
+ * 时间复杂度为O（n^2)
+ * 通过hashset中元素不可重复的特性来做
+ */
 public class LongestSubstringWithoutRepeatingCharacters {
 
     public int lengthOfLongestSubstring(String s) {
-        String result =new String();
         int num=0;
         for (int i=0;i<s.length();i++){
             Set set=new HashSet();
