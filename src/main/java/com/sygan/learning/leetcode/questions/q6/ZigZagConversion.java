@@ -12,6 +12,7 @@ import com.sun.deploy.util.StringUtils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -41,7 +42,7 @@ public class ZigZagConversion {
         System.out.println(convert("PAYPALISHIRING",1));
     }
     public static String convert(String s, int numRows) {
-        List<Character>[] setArry =new ArrayList[numRows];
+        LinkedList<Character>[] setArry =new LinkedList[numRows];
         char[] chars = s.toCharArray();
         boolean flag=true;
         if (s.length()<=numRows){
@@ -49,9 +50,9 @@ public class ZigZagConversion {
         }
         for (Integer i=0,j=0;i<s.length();i++){
             if (setArry[j]==null){
-                setArry[j]=new ArrayList<Character>();
+                setArry[j]=new LinkedList<Character>();
             }
-            setArry[j].add(chars[i]);
+            setArry[j].push(chars[i]);
             if (flag){
                 j++;
             }else {
@@ -68,11 +69,37 @@ public class ZigZagConversion {
         StringBuffer result=new StringBuffer();
 
         for (int i=0;i<numRows&&s.length()>0;i++){
-            Iterator<Character> iterator = setArry[i].iterator();
-            while (iterator.hasNext()){
-                result.append(iterator.next());
+            LinkedList<Character> characters = setArry[i];
+            Character poll = characters.pollLast();
+            while (poll!=null){
+                result.append(poll);
+                poll=characters.pollLast();
             }
         }
         return result.toString();
+    }
+
+    /**
+     * 别人的巧妙方法
+     * @param s
+     * @param nRows
+     * @return
+     */
+    public String convertOthers(String s, int nRows) {
+        char[] c = s.toCharArray();
+        int len = c.length;
+        StringBuffer[] sb = new StringBuffer[nRows];
+        for (int i = 0; i < sb.length; i++) sb[i] = new StringBuffer();
+
+        int i = 0;
+        while (i < len) {
+            for (int idx = 0; idx < nRows && i < len; idx++) // vertically down
+                sb[idx].append(c[i++]);
+            for (int idx = nRows-2; idx >= 1 && i < len; idx--) // obliquely up
+                sb[idx].append(c[i++]);
+        }
+        for (int idx = 1; idx < sb.length; idx++)
+            sb[0].append(sb[idx]);
+        return sb[0].toString();
     }
 }
