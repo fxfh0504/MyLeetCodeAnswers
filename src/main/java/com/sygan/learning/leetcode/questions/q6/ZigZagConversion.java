@@ -33,6 +33,7 @@ import java.util.TreeSet;
 
 /**
  * 一开始的时候我没想起SET的成员唯一的问题后来替换成ArrayList就好了
+ * 时间复杂度为O(2n) 即O(n)
  */
 public class ZigZagConversion {
 
