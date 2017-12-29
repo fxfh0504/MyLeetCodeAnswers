@@ -22,7 +22,7 @@ public class ContainerWithMostWater {
         if (height == null || height.length < 2)
             return 0;
         int volumn = 0, h, i = 0, j = height.length - 1;
-        while (i < j){ 
+        while (i < j){
             h = Math.min(height[i], height[j]);
             volumn = Math.max(volumn, h * (j - i));
             while (i < j && height[i] <= h) i++;
