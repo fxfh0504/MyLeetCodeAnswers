@@ -10,7 +10,15 @@ package com.sygan.learning.leetcode.questions.q14;
 /**
  * Write a function to find the longest common prefix string amongst an array of strings.
  */
+
+/**
+ * 先取出最短的string作为初始最小前缀，降低后面的运算时间
+ * 后面取前缀没什么花头
+ */
 public class LongestCommonPrefix {
+    public static void main(String...args){
+        System.out.println(longestCommonPrefix(new String[]{"a","b"}));
+    }
 
     public static String longestCommonPrefix(String[] strs) {
         String result="";
@@ -18,9 +26,7 @@ public class LongestCommonPrefix {
         if (length==0){
             return result;
         }
-        if ( length==1){
-            return strs[0]==null?result:strs[0];
-        }
+
         int minL=strs[0].length();
         String minStr=strs[0];
         for (int i=0;i<length;i++){
@@ -30,16 +36,13 @@ public class LongestCommonPrefix {
             }
         }
         char[] minChars = minStr.toCharArray();
-        for (int i=0;i<minL;i++){
+        for (int i=0;i<length;i++){
             minL=check(minChars,strs[i],minL);
             if (minL==0){
                 return result;
             }
         }
-        if (minL==1){
-            return result;
-        }
-        result=minStr.substring(0,minL-1);
+        result=minStr.substring(0,minL);
         return result;
     }
 
@@ -49,14 +52,11 @@ public class LongestCommonPrefix {
         }
         char[] chars = str.toCharArray();
         int l=0;
-        for (int i=0;i<length;i++){
+        for (int i=0;i<length;){
             if (chars[i]!=minChars[i]) break;
-            l=i;
+            l=++i;
         }
-        length=l+1;
-        if (length>l+1){
-            length=l+1;
-        }
+        length=l;
         return length;
     }
 }
