@@ -15,6 +15,10 @@ package com.sygan.learning.leetcode.questions.q14;
  * 先取出最短的string作为初始最小前缀，降低后面的运算时间
  * 后面取前缀没什么花头
  */
+
+/**
+ * 我这题做的很没水平 用string.indexof来做更简单
+ */
 public class LongestCommonPrefix {
     public static void main(String...args){
         System.out.println(longestCommonPrefix(new String[]{"a","b"}));
