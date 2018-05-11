@@ -30,6 +30,10 @@ import java.util.stream.Stream;
  * Input: 4
  * Output: "1211"
  */
+
+/**
+ * 递归思想，每一层的结果都依靠前一层
+ */
 public class CountAndSay {
 
     public static void main(String...args){
