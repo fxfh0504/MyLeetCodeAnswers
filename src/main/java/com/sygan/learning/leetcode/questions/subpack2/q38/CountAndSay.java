@@ -4,6 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.stream.Stream;
 
 /**
  * The count-and-say sequence is the sequence of integers with the first five terms as following:
@@ -31,20 +32,41 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class CountAndSay {
 
-    public String countAndSay(int n) {
+    public static void main(String...args){
+        System.out.println(countAndSay(5));
+    }
+    public static String countAndSay(int n) {
         if (n==1){
-            return "11";
+            return "1";
         }else {
             String s = countAndSay(n - 1);
             Deque<Character> q=new LinkedList();
-            s.chars().map(a -> "").forEach(a->{
-                 q.offer(a);
-                 if (a==q.peek()){
+            char[] chars = s.toCharArray();
+            StringBuffer sb = new StringBuffer();
+            for (int i=0;i<chars.length;i++){
+                char a = chars[i];
+                q.offer(a);
+                char b = q.peek();
+                if (a!=b){
+                    int j=0;
+                    while (!q.peek().equals(a)){
+                        q.pop();
+                        j++;
+                    }
+                    sb.append(j).append(b);
+                }
+                if (i==chars.length-1){
+                    int j=0;
+                    char c=q.peek();
+                    while (q.peek()!=null){
+                        c=q.pop();
+                        j++;
+                    }
+                    sb.append(j).append(c);
+                }
+            }
 
-                 }
-            });
-
-            return null;
+            return sb.toString();
 
 
         }
