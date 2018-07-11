@@ -10,7 +10,7 @@ import java.util.*;
  **/
 public class CombinationSum2 {
     public static void main(String...args){
-        System.out.println(combinationSum2(new int[]{2,5,2,1,2},5));
+        System.out.println(combinationSum2(new int[]{4,2,5,2,5,3,1,5,2,2},9));
     }
 
     public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
@@ -26,16 +26,20 @@ public class CombinationSum2 {
         if (starter==candidates.length){
             return;
         }
+        Integer pre =null;
         for (int i=starter;i<candidates.length;i++){
+            if (Objects.nonNull(pre)&&pre.compareTo(candidates[i])==0){
+                continue;
+            }
             int nextSum = candidates[i] + curr;
-            Queue next = new LinkedList<>(possibility);
+            LinkedList next = new LinkedList<>(possibility);
             next.offer(candidates[i]);
+            pre=candidates[i];
             if (nextSum<target) {
                 helper(candidates, target,i+1,result,next,nextSum);
             }else if (nextSum==target){
-                List<Integer> last = result.peekLast();
-                if (Objects.nonNull(last)&&)
                 result.add(next);
+                break;
             }else {
                 break;
             }
