@@ -1,4 +1,4 @@
-package com.sygan.learning.leetcode.questions.subpack2.q46.q48;
+package com.sygan.learning.leetcode.questions.subpack2.q48;
 
 /**
  * @program: leetcode
