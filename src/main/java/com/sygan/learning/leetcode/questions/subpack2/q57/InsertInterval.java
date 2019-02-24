@@ -1,24 +1,29 @@
-package com.sygan.learning.leetcode.questions.subpack2.q56;
+package com.sygan.learning.leetcode.questions.subpack2.q57;
 
+import com.sygan.learning.leetcode.questions.subpack2.q56.MergeIntervals;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import com.sygan.learning.leetcode.questions.subpack2.q56.MergeIntervals.Interval;
 
-public class MergeIntervals {
-    public static void main(String...args){
-        ArrayList<Interval> intervals = new ArrayList<>();
-        intervals.add(new Interval(1,4));
-        intervals.add(new Interval(4,5));
-//        intervals.add(new Interval(8,10));
-//        intervals.add(new Interval(15,18));
-        merge(intervals);
+/**
+ * @program: leetcode
+ * @description:
+ * @author: shiyu.gan
+ * @create: 2019-02-24 23:54
+ **/
+public class InsertInterval {
+
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        intervals.add(newInterval);
+        return merge(intervals);
     }
     public static List<Interval> merge(List<Interval> intervals) {
         if (intervals.size()==0){
             return intervals;
         }
-        Collections.sort(intervals,(o1,o2)->{
+        Collections.sort(intervals,(o1, o2)->{
             if (o1.start-o2.start==0){
                 return o1.end-o2.end;
             }else {
@@ -44,21 +49,4 @@ public class MergeIntervals {
         }
         return result;
     }
-
-
-    public static class Interval {
-        public int start;
-        public int end;
-
-        Interval() {
-            start = 0;
-            end = 0;
-        }
-
-        Interval(int s, int e) {
-            start = s;
-            end = e;
-        }
-    }
-
 }
